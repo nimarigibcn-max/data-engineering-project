@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_weather
+    description: "Staged weather data for Stockholm. Flattens raw JSON from Azure into one row per day."
+    columns:
+      - name: date
+        description: "The calendar date of the weather observation"
+        tests:
+          - not_null
+          - unique
+      - name: temperature_max_c
+        description: "Maximum temperature in Celsius for the day"
+        tests:
+          - not_null
+      - name: temperature_min_c
+        description: "Minimum temperature in Celsius for the day"
+        tests:
+          - not_null
+      - name: precipitation_mm
+        description: "Total precipitation in millimetres for the day"
+        tests:
+          - not_null
+
+  - name: mart_weather_daily
+    description: "Gold layer. Daily weather for Stockholm with calculated fields ready for dashboards."
+    columns:
+      - name: date
+        description: "The calendar date"
+        tests:
+          - not_null
+          - unique
+      - name: temperature_max_c
+        description: "Maximum temperature in Celsius"
+      - name: temperature_min_c
+        description: "Minimum temperature in Celsius"
+      - name: temperature_range_c
+        description: "Difference between max and min temperature - shows how much temperature varied that day"
