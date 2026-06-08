@@ -1,9 +1,10 @@
 .env
 
-# Default .gitignore content added by dbt Cloud# you shouldn't commit these into source control
-# these are the default directory names, adjust/add to fit your needs
+# dbt Cloud default
 target/
 dbt_packages/
 logs/
-# end dbt Cloud content
 dbt_internal_packages/
+
+# Local weather JSON files (uploaded to Azure Blob, not needed in repo)
+weather_stockholm_*.json
